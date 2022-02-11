@@ -1,100 +1,74 @@
-const container = document.querySelector('#container');
+const black = document.getElementById('btn');
+const reload = document.getElementById('btn1');
+const random = document.getElementById('btn2');
 
-  
-function createBox(bxName,lvlName){
-  bxName.classList.add('gridbox')
-  lvlName.appendChild(bxName);
-}   
-
-function createLvl(lvlName){
-  lvlName.classList.add('lvl')
-  lvlName.style.cssText = "background-color: white; display:flex;"
-  container.appendChild(lvlName);
-}
-
-
-let object = {};
-let object2 ={};
-
-//creates divs to use for rows
-
-function createRowObjects(first,last){
-  for (i = first; i < last; i++){
-    object2[`lvl${i}`] = {
-      name: document.createElement('div')
-}}}
-
-//Creates rows 
-function createRows(n){
-  for (i=0; i<n; i++){
-    createLvl(object2[`lvl${i}`].name)
-}
-}
-
-//divs for boxes
-function createBoxObjects(first,last,lvl){
-  for (i = `${first}`; i < `${last}`; i++){
-    object[`div${i}${lvl}`] = {
-      name: document.createElement('div')
+function generateRandomColor() {
+  let letters = '0123456789ABCDEF';
+  let color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
   }
-  }
-  }
+  return color;
+}
+let randomColor = generateRandomColor()
 
-//Creates boxes in rows
-function createBoxes (first,last,lvl){
-  for (i=first; i<last;i++){
-    createBox(object[`div${i}${lvl}`].name,object2[`lvl${lvl}`].name)
-    }
+function createDiv(n){
+  for (let i=0; i< n;i++){
 
+let contain = document.getElementById('drawingSpace');
+let newGriding = document.createElement('div');
+newGriding.setAttribute('class', 'grid');
+contain.appendChild(newGriding);
+}
 }
 
 
-let x = Number(`0`);
-function createDrawingBoard(nOfRows,nOfColumns){
-  createRowObjects(0,nOfRows)
-  createRows(nOfRows)
-  for (let i=0; i<`${nOfRows}`; i++){
-    createBoxObjects(0,`${nOfColumns}`,`${i}`)
-    createBoxes(0,`${nOfColumns}`,`${i}`)
-    console.log(`${i}`)
-  }
-}
+black.addEventListener('click', function() {
+  let a = prompt("Please enter size of Board(<=100)")
+    if (a >100){location.reload()}
+let width = `width:` + ((100/a))+`%`
+createDiv(a*a)
 
-
-
-const btn = document.querySelector('#btn');
-const btn2 = document.querySelector('#btn2');
-
-
-btn.addEventListener('click', () => {
- let a = prompt('Please enter number of rows <= 100:','0')
- createDrawingBoard(a,a)
- if (a>100) {location.reload()}
-
- const boxes = document.querySelectorAll('.gridbox')
- boxes.forEach(box => {
+const grid = document.querySelectorAll('.grid')
+  grid.forEach(box => {
   box.addEventListener('mouseover', () => {
-    box.style.cssText = "background-color:black;"
-
-    btn2.addEventListener('click', () => {
-      location.reload()
+  box.style.cssText = `background-color:black;${width}` 
+   })
+ })
+ 
+grid.forEach(box => {
+  box.style.cssText = `${width}`
+    
+   })
   
-  })
- 
- })})
- 
+
 });
 
-   /*Event Listeners*/
+random.addEventListener('click', function() {
+  let a = prompt("Please enter size of Board(<=100)")
+    if (a >100){location.reload()}
+let width = `width:` + ((100/a))+`%`
+createDiv(a*a)
 
-   const boxes = document.querySelectorAll('.gridbox')
-   boxes.forEach(box => {
-    box.addEventListener('mouseover', () => {
-      box.style.cssText = "background-color:blue;"
+const grid = document.querySelectorAll('.grid')
+  grid.forEach(box => {
+  box.addEventListener('mouseover', () => {
+  box.style.cssText = `background-color:${randomColor};${width}` 
+   })
+ })
+ grid.forEach(box => {
+  box.style.cssText = `${width}`
+    
+   })
+})
 
-    })
-  })
 
 
+
+
+
+reload.addEventListener('click', function() {
+location.reload()
+});
 
 

@@ -3,31 +3,32 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px;
-    width:960px;
-    height:960px;
-    background-color: gray;
- 
-
     
-
-}
-
-.gridbox{
-    width: 20px;
-    height: 20px;
-    background-color: rgb(207, 207, 218);
-    margin:0px;
+    background-color: rgb(78, 78, 78);
 
     
 }
 
-#header{
+
+#drawingSpace {
+    background-color: #dfdfdf;
+    height: 960px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    
-    
-}
+    flex-wrap: wrap;
+  }
+   
+  
+.grid {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: inline-block;
+    width: 25%;
+  }
 
+  .btns{
+      display: flex;
+      flex-direction: rows;
+
+  }
