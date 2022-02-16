@@ -24,11 +24,18 @@
     padding: 0;
     border: none;
     display: inline-block;
-    width: 25%;
   }
 
   .btns{
       display: flex;
       flex-direction: rows;
 
+  }
+
+  .boxColor{
+    background-color: black;
+  }
+
+  .clear{
+    background-color: #dfdfdf
   }
