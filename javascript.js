@@ -1,17 +1,4 @@
 const defaultColor = document.getElementById('btn');
-const random = document.getElementById('btn2');
-
-/*
-function generateRandomColor() {
-  let letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-let randomColor = generateRandomColor()
-*/
 
 function createDrawingBoard(numOfBoxes){
   for (let i=0; i< numOfBoxes;i++){
@@ -42,37 +29,44 @@ const clearBoard = document.getElementById('clearBoard')
 window.setTimeout(askForBoardSize(),1000)
 
 guardClause()
-console.log(isNaN(boardSize))
-
-clearBoard.addEventListener('click', () => boxes.forEach(box => box.setAttribute("class","clear")));
-
 
 const boxes = document.querySelectorAll('.boxes');
 
 defaultColor.addEventListener('click', function() {
   const boxes = document.querySelectorAll('.boxes');
   boxes.forEach(box => {
-  box.addEventListener('mouseover', () => box.setAttribute("class","boxColor"));
+  box.addEventListener('mouseover', () => box.style.backgroundColor = 'black');
  })
 });
 
 
-/*random.addEventListener('click', function() {
-  let a = prompt("Please enter size of Board(<=100)")
-    if (a >100){location.reload()}
-let width = `width:` + ((100/a))+`%`
-createDiv(a*a)
+const randomColors = document.getElementById('btnRandom');
 
-const grid = document.querySelectorAll('.grid')
-  grid.forEach(box => {
-  box.addEventListener('mouseover', () => {
-  box.style.cssText = `background-color:${randomColor};${width}` 
-   })
+let ranNum;
+function randomNumber(){ ranNum =  (Math.floor(Math.random()*265))
+  return ranNum
+}
+
+
+
+function generateRandomColor() {
+  return `rgb`+ "(" + randomNumber() + "," + randomNumber() + "," + randomNumber() + ")"
+  }
+  
+console.log(generateRandomColor())
+
+clearBoard.addEventListener('click', () => boxes.forEach(box => box.style.backgroundColor = "rgb(226, 224, 224)"));
+
+
+
+randomColors.classList.add('ranColor');
+
+
+randomColors.addEventListener('click', function() {
+  const boxes = document.querySelectorAll('.boxes');
+  boxes.forEach(box => {
+  box.onmouseover = function(event){let target = event.target; target.style.background = generateRandomColor()};
  })
- grid.forEach(box => {
-  box.style.cssText = `${width}`
-    
-   })
-})
-*/
+});
+
 
