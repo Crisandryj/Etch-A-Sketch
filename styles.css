@@ -32,10 +32,6 @@
 
   }
 
-  .boxColor{
-    background-color: black;
-  }
-
-  .clear{
-    background-color: #dfdfdf
-  }
+.boxes{
+  height:auto;
+}
