@@ -1,6 +1,6 @@
 const defaultColor = document.getElementById('btn');
 let drawingSpace = document.getElementById('drawingSpace');
-
+let boardSize;
 
 function createDrawingBoard(numOfBoxes){
   for (let i=0; i< numOfBoxes;i++){
@@ -10,13 +10,13 @@ function createDrawingBoard(numOfBoxes){
 }
 }
 
-let boardSize;
+
 
 function guardClause(){
-  while (boardSize > 100 || isNaN(boardSize) == true ) {askForBoardSize()
-  
+  while (boardSize > 100 || isNaN(boardSize) == true ) {askForBoardSize()  
   }
 }
+
 
 function askForBoardSize(){
   boardSize = prompt("Please enter size of Board(<=100)")
@@ -28,13 +28,6 @@ function askForBoardSize(){
   box.style.height += `${size}%`
 });
 };
-
-
-const clearBoard = document.getElementById('clearBoard')
-
-window.setTimeout(askForBoardSize(),1000)
-
-const boxes = document.querySelectorAll('.boxes');
 
 defaultColor.addEventListener('click', function() {
   const boxes = document.querySelectorAll('.boxes');
@@ -59,7 +52,6 @@ function generateRandomColor() {
   
 
 
-const selectNewBoardSize = document.getElementById('createBtn')
 
 function deleteChild(){
   let child = drawingSpace.lastElementChild;
@@ -69,19 +61,39 @@ function deleteChild(){
   }
 }
 
+const selectNewBoardSize = document.getElementById('createBtn')
+
 selectNewBoardSize.addEventListener('click', function(){
   deleteChild()
   askForBoardSize()
 })
 
+
+
 randomColors.addEventListener('click', function() {
+  const boxes = document.querySelectorAll('.boxes');
   boxes.forEach(box => {
   box.onmouseover = function(event)
   {let target = event.target; target.style.background = generateRandomColor()};
  })
 });
 
-clearBoard.addEventListener('click', () => boxes.forEach(
-  box => box.style.backgroundColor = "rgb(226, 224, 224)"));
+const erase = document.getElementById('eraser')
+const clearBoard = document.getElementById('clearBoard')
 
-  
+erase.addEventListener('click', function() {
+  const boxes = document.querySelectorAll('.boxes');
+  boxes.forEach(box => {
+    box.onmouseover = function(event)
+    {let target = event.target; target.style.background = "rgb(226, 224, 224)"};
+   })
+  });
+
+clearBoard.addEventListener('click', () => {
+  const boxes = document.querySelectorAll('.boxes')
+  boxes.forEach(box => {box.style.background = "rgb(226, 224, 224)"}
+  )}
+);
+
+
+  setTimeout(() => {askForBoardSize()},3000)
